@@ -1,5 +1,5 @@
 from launch import LaunchDescription
-from launch.actions import IncludeLaunchDescription, ExecuteProcess
+from launch.actions import IncludeLaunchDescription, ExecuteProcess, TimerAction
 from launch_ros.actions import Node
 from ament_index_python.packages import get_package_share_directory
 from os.path import join
@@ -40,11 +40,16 @@ def generate_launch_description():
     )
 
     # Step 5: Enable the ros2 controllers
-    start_controllers  = Node(
+    start_controllers  = TimerAction(
+        period=5.0,
+        actions=[
+            Node(
                 package="controller_manager",
                 executable="spawner",
                 arguments=['maci_joint_state_broadcaster', 'maci_controller', 'gripper_controller'],
                 output="screen",
             )
+        ]
+    )
 
     return LaunchDescription([robot_state_publisher, start_controllers, robot ])
