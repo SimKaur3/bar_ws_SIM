@@ -11,7 +11,7 @@ import os
 def generate_launch_description():
 
     # Start a simulation with the cafe world
-    cafe_world_uri = join(get_package_share_directory("gamecity"), "worlds", "gamecity.sdf")
+    cafe_world_uri = join(get_package_share_directory("gamecity"), "worlds", "simple_gamecity.sdf")
     path = join(get_package_share_directory("ros_gz_sim"), "launch", "gz_sim.launch.py")
     
     gazebo_sim = IncludeLaunchDescription(path,
