@@ -26,7 +26,7 @@ def generate_launch_description():
 
     # Gazebo Sim.
     pkg_ros_gz_sim = get_package_share_directory('ros_gz_sim')
-    world_file = os.path.join(get_package_share_directory('my_robot_arm'),'urdf','coke_pickup.sdf')
+    world_file = os.path.join(get_package_share_directory('my_robot_arm'), 'urdf', 'coke_pickup.sdf')
    
     gazebo = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
@@ -83,7 +83,7 @@ def generate_launch_description():
     move_group = IncludeLaunchDescription(join(get_package_share_directory("my_robot_arm_moveit"), "launch", "move_group.launch.py"))
     rviz = IncludeLaunchDescription(join(get_package_share_directory("my_robot_arm_moveit"), "launch", "moveit_rviz.launch.py"))
     
-    #mg_sim_time = ExecuteProcess(cmd=["ros2", "param", "set", "/move_group", "use_sim_time","True"])
+    mg_sim_time = ExecuteProcess(cmd=["ros2", "param", "set", "/move_group", "use_sim_time","True"])
 
     # Gazebo Bridge: This brings data (sensors/clock) out of gazebo into ROS.
     bridge = Node(
@@ -105,5 +105,5 @@ def generate_launch_description():
         bridge,
         spawn,
         start_controllers,
-        #mg_sim_time,       
+        mg_sim_time,       
     ])
